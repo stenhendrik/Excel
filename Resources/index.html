@@ -1,0 +1,21 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<script>
+    $(document).ready(function () {
+        let filename;
+        $.ajax({
+            url: 'http://localhost:8090/index.php',
+            type: 'POST',
+            success: function(data, status, request) {
+                filename = request.getResponseHeader('Content-Disposition').replace('attachment: filename=', '');
+                window.location = 'http://localhost:8090/Files/' + filename;
+            }
+        });
+    });
+</script>
+    <body>
+        <div class="download-link"></div>
+    </body>
+</html>
