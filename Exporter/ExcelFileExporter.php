@@ -66,8 +66,4 @@ class ExcelFileExporter extends AbstractExporter
         header('Cache-Control: maxage=1');
         return;
     }
-    public function unlink()
-    {
-        unlink(sprintf('%s%s',$this->config->getPath(),$this->fileName));
-    }
 }

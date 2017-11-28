@@ -16,7 +16,7 @@ interface GeneratorInterface
     /**
      * Generate the excel package
      * @param $fileName - reference to the file name
-     * @return string
+     * @return void
      */
     public function saveFile($fileName);
 
@@ -27,6 +27,7 @@ interface GeneratorInterface
      * 0 => [ 'A' => 'row1 col1', .... 'Z' => 'row1 col26' ],
      * 1 => [], 2 => [], 3 => [], .............. N-1 => [],
      * N => [ 'A' => 'rowN col1', .... 'Z' => 'rowN col26' ]
+     * @return void
      */
     public function addData($rowData);
 

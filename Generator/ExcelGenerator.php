@@ -39,7 +39,7 @@ final class ExcelGenerator implements GeneratorInterface
     /**
      * {@inheritdoc }
      */
-    final public function saveFile($fileName)
+    final public function saveFile($fileName): void
     {
         /** @var \ZipArchive $zip */
         $zip = new \ZipArchive();
@@ -54,16 +54,13 @@ final class ExcelGenerator implements GeneratorInterface
         $zip->addEmptyDir('xl/_rels');
         $zip->addFromString('xl/_rels/workbook.xml.rels', $this->getWorkbookRels());
         $zip->addFromString('[Content_Types].xml', $this->getContentType());
-
         $zip->close();
-
-        return $fileName;
     }
 
     /**
      * {@inheritdoc }
      */
-    final public function addData($rowData)
+    final public function addData($rowData): void
     {
         $this->data = array_merge($this->data, $rowData);
     }
@@ -71,7 +68,7 @@ final class ExcelGenerator implements GeneratorInterface
     /**
      * {@inheritdoc }
      */
-    final public function getSheet()
+    final public function getSheet(): string
     {
         $i = 0;
         $rowFields = null;
@@ -98,7 +95,7 @@ final class ExcelGenerator implements GeneratorInterface
     /**
      * @return string
      */
-    protected function getSheetBeginning()
+    protected function getSheetBeginning(): string
     {
         return sprintf('<?xml version="1.0" encoding="utf-8" standalone="yes"?>
             <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
@@ -109,7 +106,7 @@ final class ExcelGenerator implements GeneratorInterface
     /**
      * @return string
      */
-    protected function getSheetEnding()
+    protected function getSheetEnding(): string
     {
         return sprintf('
                 </sheetData>
@@ -120,7 +117,7 @@ final class ExcelGenerator implements GeneratorInterface
     /**
      * {@inheritdoc }
      */
-    final public function getStyleSheet()
+    final public function getStyleSheet(): string
     {
         return '';
     }
@@ -128,7 +125,7 @@ final class ExcelGenerator implements GeneratorInterface
     /**
      * {@inheritdoc }
      */
-    final public function getRels()
+    final public function getRels(): string
     {
         return sprintf(
             '<?xml version="1.0" encoding="UTF-8"?>
@@ -141,7 +138,7 @@ final class ExcelGenerator implements GeneratorInterface
     /**
      * {@inheritdoc }
      */
-    final public function getWorkBook()
+    final public function getWorkBook(): string
     {
         return sprintf(
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -156,7 +153,7 @@ final class ExcelGenerator implements GeneratorInterface
     /**
      * {@inheritdoc }
      */
-    public function getContentType()
+    public function getContentType(): string
     {
         return sprintf(
             '<?xml version="1.0" encoding="UTF-8"?>
@@ -172,7 +169,7 @@ final class ExcelGenerator implements GeneratorInterface
     /**
      * {@inheritdoc }
      */
-    final public function getWorkbookRels()
+    final public function getWorkbookRels(): string
     {
         return sprintf(
             '<?xml version="1.0" encoding="UTF-8"?>
